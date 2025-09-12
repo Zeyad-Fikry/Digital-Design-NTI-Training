@@ -19,7 +19,7 @@ module baud_counter (
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             counter <= 15'd0;
-      آ end else if (start_counting) begin
+        end else if (start_counting) begin
             counter <= ONE_HALF_BAUD_PERIOD;  // Start with 1.5 period for start bit
         end else if (enable && (counter > 0)) begin
             counter <= counter - 1'b1;  // Count down
