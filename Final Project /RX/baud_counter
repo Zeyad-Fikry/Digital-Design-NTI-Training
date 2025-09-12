@@ -1,0 +1,39 @@
+
+module baud_counter (
+    input clk ,
+    input reset, 
+    input enable,   
+    input start_counting ,
+    output reg baud_out  
+);
+
+    localparam CLK_FREQ = 100_000_000;  // 100 MHz
+    localparam BAUD_RATE = 9600;        // 9600 bps
+    localparam COUNTER_MAX = CLK_FREQ / BAUD_RATE;  // 10417
+    localparam ONE_HALF_BAUD_PERIOD = (COUNTER_MAX * 3) / 2;  //(1.5 BAUD_PERIOD)
+    
+    reg [14:0] counter;
+
+
+    // Always block 1: Counter register
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            counter <= 15'd0;
+      آ end else if (start_counting) begin
+            counter <= ONE_HALF_BAUD_PERIOD;  // Start with 1.5 period for start bit
+        end else if (enable && (counter > 0)) begin
+            counter <= counter - 1'b1;  // Count down
+        end else if (enable && (counter == 0)) begin
+                counter <= COUNTER_MAX;
+        end
+    end
+
+    // Always block 2: Baud output (high when counter is zero)
+    always @(posedge clk or posedge reset) begin
+        if (reset)
+            baud_out <= 1'b0;
+        else
+            baud_out <= (counter == 0) && enable;
+    end
+
+endmodule
