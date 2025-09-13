@@ -1,0 +1,13 @@
+# Requirements
+
+
+- **ModelSim - Altera Starter Edition 10.5b**  
+  (Simulator, Build date: Oct 5, 2016)
+
+- **Intel Quartus Prime Lite Edition 18.1.0 Build 625 (SJ Edition)**  
+  (Release date: Sep 12, 2018)
+
+## Code Editing (IDE)
+- **Visual Studio Code**  
+  Version: 1.103.2
+  > *Or any equivalent IDE with Verilog/SystemVerilog support
