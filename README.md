@@ -206,6 +206,7 @@ The project includes comprehensive simulation results demonstrating:
 ### Prerequisites
 - Verilog simulator (ModelSim, QuestaSim, or similar)
 - Quartus Prime (for FPGA synthesis)
+- See `requirements.txt` for detailed project dependencies
 
 ### Running the Complete System Test
 1. Compile all Verilog files in your simulator
